@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.font-itim {
+    font-family: "Itim", cursive;
+}
+
+.bg-main {
+    background-color: #FFBC5F;
+}
+
+.bg-sub {
+    background-color: #C7D4FF;
+}
+
+.bg-text {
+    background-color:#4F331F;
+}
+
+
+.text-main {
+ color : #4F331F
+}
+
+.text-button {
+    color : #FFBC5F
+}
+
+.border-main {
+    border-color: #FFBC5F;
+}
+
+
+.btn-cancel {
+    color: #F26665;
+    border: 2px solid #F26665;
+    background-color: none;
+}
+
+.btn-confirm {
+    background-color: #9CDC35;
+    color: white;
+}
+
+.arrow-bg-90deg {
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5046393557422969) 30%, rgba(255,255,255,0) 100%);
+}
+.arrow-bg-270deg {
+    background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5046393557422969) 30%, rgba(255,255,255,0) 100%);
+}
