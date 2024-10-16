@@ -60,10 +60,10 @@ export default function CreateGameCollection() {
 
             <div className='w-full'>
                 <CategoryButton hdlClick={hdlClickCategory} category={activePage.category} className='flex font-itim bg-none w-full px-1' />
-                <div className='flex justify-between bg-black w-full'>
+                <div className='flex justify-between bg-sub w-full'>
                     <div className='arrow-bg-90deg w-20 flex items-center justify-start hover:cursor-pointer hover:backdrop-contrast-75'
                         onClick={() => hdlPageChange(-1)}><PrevPage2Icon className="w-10 h-10 hover:-scale-90" /></div>
-                    <div className='flex flex-wrap gap-2 justify-center py-4 text-white w-full'>
+                    <div className='flex flex-wrap gap-2 justify-center py-4 text-black w-full'>
 
                         {activePage.collections.map(el => selected !== el.id ? <CollectionCard key={el.id} collection={el} func={() => {
                             setSelected(el.id)

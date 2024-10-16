@@ -1,5 +1,5 @@
 
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import EditCollectionForm from '../components/collection/EditCollectionForm'
 import useCollectionStore from '../stores/collection-store'
 import useUserStore from '../stores/user-store'
@@ -14,6 +14,9 @@ export default function EditCollectionPage() {
     })))
     const navigate = useNavigate();
     useEffect(()=>{
+        if(!currentCollection){
+           return navigate('/collection')
+        }
         userCheck()
     },[])
     const userCheck = async()=>{
@@ -24,7 +27,7 @@ export default function EditCollectionPage() {
     }
     return (
         <div className='mt-16 flex justify-center items-start max-md:items-start h-[calc(100vh-32px)]'>
-           <EditCollectionForm/>
+           {currentCollection && <EditCollectionForm/>}
         </div>
     )
 }

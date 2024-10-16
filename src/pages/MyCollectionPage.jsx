@@ -4,7 +4,6 @@ import { useShallow } from 'zustand/shallow'
 import { Link } from 'react-router-dom'
 import useCollectionStore from '../stores/collection-store'
 import useUserStore from '../stores/user-store'
-import CollectionDetail from '../components/collection/CollectionDetail'
 import CategoryButton from '../components/collection/CategoryButton'
 
 export default function MyCollectionPage() {
@@ -69,7 +68,7 @@ export default function MyCollectionPage() {
           </div>
         </div>
       </div>
-      <CollectionDetail setActivePage={setActivePage} />
+      
     </>
   )
 }

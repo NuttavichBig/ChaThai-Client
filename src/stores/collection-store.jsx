@@ -6,7 +6,7 @@ const API = import.meta.env.VITE_API;
 
 
 
-const useCollectionStore = create(persist((set,get)=>({
+const useCollectionStore = create((set,get)=>({
     currentCollection : null,
     loading : false,
     setLoading : (bool)=>{
@@ -72,12 +72,7 @@ const useCollectionStore = create(persist((set,get)=>({
     }
 
 
-})
-,{
-    name : "statePostData",
-    storage : createJSONStorage(()=>localStorage)
-}
-))
+}))
 
 
 

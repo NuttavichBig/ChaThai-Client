@@ -2,6 +2,8 @@ import React from 'react'
 import CollectionCard from './CollectionCard'
 import { NextPageIcon, PrevPageIcon } from '../../icon/icon'
 import useCollectionStore from '../../stores/collection-store'
+import CollectionDetail from './CollectionDetail'
+
 
 export default function CollectionPageBox(props) {
   const {activePage , setActivePage}= props
@@ -16,6 +18,7 @@ export default function CollectionPageBox(props) {
     setActivePage(prv=>({...prv,page : activePage.page+val}))
   }
   return(
+    <>
     <div className='flex flex-wrap gap-4 p-3 bg-sub '>
         {/* Map array for card */}
         {activePage.collections.map(el=><CollectionCard key={el.id} collection={el} func={(collectionId)=>{
@@ -28,5 +31,7 @@ export default function CollectionPageBox(props) {
           <button onClick={()=>hdlPageChange(1)}><NextPageIcon className=" w-5 h-5 hover:scale-90"/></button>
         </div>
     </div>
+    <CollectionDetail setActivePage={setActivePage} />
+    </>
   )
 }

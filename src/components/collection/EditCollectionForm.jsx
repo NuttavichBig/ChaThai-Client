@@ -63,7 +63,7 @@ export default function EditCollectionForm() {
                 body.append(`words[${index}]`, item)
             })
             console.log(body)
-            await updateCollection(token, currentCollection.id ,body)
+            await updateCollection(token, currentCollection?.id ,body)
             setInput(prv=>({...prv,error : ''}))
             navigate('/collection')
         } catch (err) {
@@ -74,7 +74,6 @@ export default function EditCollectionForm() {
             setLoading(false)
         }
     }
-    console.log(currentCollection)
     return (
         <form className='flex flex-col py-4 px-16 justify-center w-2/3 max-xl:w-2/3 max-lg:w-3/4 max-md:w-full max-md:flex-col max-2xl:w-1/2 shadow-xl bg-white gap-8 rounded-xl'
             onSubmit={hdlSubmit}>
