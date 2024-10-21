@@ -44,6 +44,7 @@ const useCollectionStore = create((set,get)=>({
         set({loading : true})
         const result = await axios.get(`${API}/collection/${id}`)
         set({currentCollection : result.data,loading : false})
+        return result.data
     },
     deleteCollection : async(token,id)=>{
         set({loading : true})

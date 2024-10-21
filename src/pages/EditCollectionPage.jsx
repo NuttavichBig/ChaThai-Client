@@ -5,6 +5,7 @@ import useCollectionStore from '../stores/collection-store'
 import useUserStore from '../stores/user-store'
 import { useShallow } from 'zustand/shallow'
 import { useEffect } from 'react'
+import useRoomStore from '../stores/room-store'
 
 export default function EditCollectionPage() {
     const currentCollection = useCollectionStore(state=>state.currentCollection)
@@ -12,6 +13,10 @@ export default function EditCollectionPage() {
         token : state.token,
         getMe : state.getMe
     })))
+    const disconnect = useRoomStore(state=>state.disconnect)
+    useEffect(()=>{
+        disconnect();
+    },[])
     const navigate = useNavigate();
     useEffect(()=>{
         if(!currentCollection){

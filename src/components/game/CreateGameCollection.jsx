@@ -5,31 +5,69 @@ import useCollectionStore from '../../stores/collection-store'
 import { useShallow } from 'zustand/shallow'
 import useUserStore from '../../stores/user-store'
 import CategoryButton from '../collection/CategoryButton'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import useRoomStore from '../../stores/room-store'
 
 export default function CreateGameCollection() {
     const user = useUserStore(state => state.user)
-
+    const navigate = useNavigate();
     const { getOfficialCollection, getCommunityCollection, getOwnCollection } = useCollectionStore(useShallow(state => ({
         getOfficialCollection: state.getOfficialCollection,
         getCommunityCollection: state.getCommunityCollection,
         getOwnCollection: state.getOwnCollection,
+    })))
+
+    const { createGame, connect, joinRoom, currentRoom, socket, disconnect } = useRoomStore(useShallow(state => ({
+        createGame: state.createGame,
+        connect: state.connect,
+        joinRoom: state.joinRoom,
+        currentRoom: state.currentRoom,
+        socket: state.socket,
+        disconnect: state.disconnect
     })))
     const [activePage, setActivePage] = useState({
         category: 'Official',
         page: 1,
         limit: 5,
         collections: [],
+        err: '',
+        loading : false
     })
     const [selected, setSelected] = useState(null)
     useEffect(() => {
-        hdlCollectionGet()
+        try{
+            setActivePage(prv=>({...prv,loading:true}))
+            hdlCollectionGet()
+        }catch(err){
+            const errMsg = err?.response?.data?.message || err.message
+            console.log(errMsg)
+            setActivePage(prv => ({ ...prv, err: errMsg }))
+        }finally{
+            setActivePage(prv=>({...prv,loading:false}))
+        }
 
     }, [activePage.category, activePage.page])
 
     useEffect(() => {
         setSelected(activePage.collections[0]?.id)
     }, [activePage.collections])
+    useEffect(() => {
+        if (currentRoom) navigate('/game/room')
+    }, [currentRoom])
+
+
+    //  real time socket error handle
+    useEffect(() => {
+        if (socket) {
+            socket.on('error', message => {
+                console.log('error join room', message)
+                setActivePage(prv => ({ ...prv, err: message }))
+            })
+        }
+        return () => {
+            if (socket) socket.off('error')
+        }
+    }, [socket])
 
 
     const hdlCollectionGet = async () => {
@@ -52,8 +90,20 @@ export default function CreateGameCollection() {
         setActivePage(prv => ({ ...prv, page: activePage.page + val }))
     }
 
-    const hdlCreateGame = ()=>{
-        console.log('create game')
+    const hdlCreateGame = async () => {
+        try {
+            if (selected) {
+                const result = await createGame(selected)
+                console.log(result.data.room.code)
+                connect();
+                joinRoom(result.data.room.code);
+                setActivePage(prv => ({ ...prv, err: '' }))
+            }
+        } catch (err) {
+            console.log(err.message)
+            setActivePage(prv => ({ ...prv, err: err.message }))
+
+        }
     }
     return (
         <>
@@ -67,7 +117,7 @@ export default function CreateGameCollection() {
 
                         {activePage.collections.map(el => selected !== el.id ? <CollectionCard key={el.id} collection={el} func={() => {
                             setSelected(el.id)
-                        }} /> : <div className='btn-confirm rounded-lg p-2 '><CollectionCard key={el.id} collection={el} func={() => {
+                        }} /> : <div key={el.id} className='btn-confirm rounded-lg p-2 '><CollectionCard collection={el} func={() => {
                             setSelected(el.id)
                         }} /></div>)}
 
@@ -77,11 +127,12 @@ export default function CreateGameCollection() {
                 </div>
             </div>
             <div className='flex gap-2 justify-end'>
-            <button className='btn min-h-10 h-10 w-1/5 border-0 text-lg btn-confirm  rounded-full shadow-lg font-semibold font-itim max-2xl:w-1/4 max-lg:w-1/3'
-            onClick={hdlCreateGame}>
-              Create Game</button>
-            <Link to={'/'} className='min-h-10 h-10 w-1/5 flex items-center justify-center max-xl:w-1/4 max-lg:w-1/3'><button className='w-full h-full text-lg btn-cancel rounded-full  font-semibold hover:border-black hover:text-black font-itim'>
-              Back</button></Link>
+                <p className='text-sm text-red-500'>{activePage.err}</p>
+                <button className='btn min-h-10 h-10 w-1/5 border-0 text-lg btn-confirm  rounded-full shadow-lg font-semibold font-itim max-2xl:w-1/4 max-lg:w-1/3'
+                    onClick={hdlCreateGame}>
+                    Create Game</button>
+                <Link to={'/'} className='min-h-10 h-10 w-1/5 flex items-center justify-center max-xl:w-1/4 max-lg:w-1/3'><button className='w-full h-full text-lg btn-cancel rounded-full  font-semibold hover:border-black hover:text-black font-itim'>
+                    Back</button></Link>
             </div>
         </>
     )

@@ -7,6 +7,7 @@ import Unauthorized from "../pages/Unauthorized";
 import CreateCollectionPage from "../pages/CreateCollectionPage";
 import EditCollectionPage from "../pages/EditCollectionPage";
 import CreateGamePage from "../pages/CreateGamePage";
+import GameRoom from "../pages/GameRoom";
 
 
 
@@ -18,7 +19,8 @@ const guestRouter = createBrowserRouter([
     { path: '/collection/create' , element: <ProtectionRoute element={<CreateCollectionPage/>} reqRole={'USER'}/>},
     { path: '/collection/edit' , element: <ProtectionRoute element={<EditCollectionPage/>} reqRole={'USER'}/>},
     { path: '/game/create' , element: <ProtectionRoute element={<CreateGamePage/>} reqRole={'USER'}/>},
-    { path : '/unauthorized',element : <Unauthorized/>}
+    { path: '/game/room', element: <ProtectionRoute element={<GameRoom/>} reqRole={'USER'}/>},
+    { path : '/unauthorized',element : <Unauthorized/>},
 
 ])
 

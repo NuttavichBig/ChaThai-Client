@@ -43,12 +43,12 @@ export default function Login() {
       <p className='text-center font-itim text-2xl font-bold'>Login</p>
       <p className='text-center font-itim'>Login for more collection featured</p>
         <input type='text' placeholder='username'
-              className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200'
+              className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 bg-white text-black'
               name='username'
               value={input.username}
               onChange={hdlChange}/>
         <input type='password' placeholder='password'
-              className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200'
+              className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 bg-white text-black'
               name='password'
               value={input.password}
               onChange={hdlChange}/>

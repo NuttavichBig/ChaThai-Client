@@ -55,17 +55,17 @@ export default function UserInfo() {
       <div className='flex flex-col items-center justify-center w-full gap-2'>
         {input.loading && <span className="loading loading-dots loading-xs"></span>}
         <div className='p-1 border-2 border-main rounded-full'>
-            <div className='h-24 w-24 rounded-full bg-white hover:cursor-pointer'
+            <div className='h-24 w-24 rounded-full bg-white hover:cursor-pointer relative'
                 onClick={() => document.getElementById('input-file').click()}>
                 <input type="file" className='hidden' id='input-file'
                     onChange={hdlFileChange} />
                 <img src={user.profileImage ? user.profileImage : 'https://www.svgrepo.com/show/522440/profile.svg'} className='w-full h-full rounded-full' />
-                <div className='bg-black opacity-0 h-24 w-24 rounded-full text-center content-center text-white font-semibold relative -top-24 z-10 hover:opacity-75'>Click</div>
+                <div className='bg-black opacity-0 h-24 w-24 rounded-full text-center content-center text-white font-semibold absolute bottom-0 hover:opacity-75'>Click</div>
             </div>
         </div>
         <div className='flex justify-center items-center flex-col line'>
 
-          <div className='flex gap-1 font-semibold font-itim items-center text-lg'>
+          <div className='flex gap-1 font-semibold font-itim items-center text-lg text-main'>
             {
               input.update?<input type='text' value={input.displayName} onChange={hdlDisplayNameInput}/>:<p>{user.displayName || 'John Doe'}</p>
             }
@@ -73,7 +73,7 @@ export default function UserInfo() {
           </div>
           <p className='text-sm opacity-50'>@{user.username}</p>
         </div>
-        <Link to={'/collection'} className='btn p-0 w-full bg-main text-white text-xl font-itim hover:bg-black'>View My Collection</Link>
+        <Link to={'/collection'} className='btn p-0 w-full bg-main text-white text-xl font-itim hover:bg-black border-0 shadow-lg'>View My Collection</Link>
         <button className='w-full rounded-lg border-2 border-gray-400 bg-white text-gray-400 font-itim py-1 hover:border-black hover:text-black'
         onClick={logout}>Log out</button>
             
