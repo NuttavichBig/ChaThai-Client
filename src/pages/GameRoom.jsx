@@ -10,6 +10,7 @@ export default function GameRoom() {
   useEffect(()=>{
     if(!socket)navigate('/')
   },[socket])
+
   return (
     <div className='mt-16 flex'>
       <GameInfo/>

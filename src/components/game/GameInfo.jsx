@@ -6,8 +6,7 @@ import useUserStore from '../../stores/user-store'
 import ChangeCollectionModal from './ChangeCollectionModal'
 
 export default function GameInfo() {
-    const {socket,currentRoom,players, roomUpdateListener} = useRoomStore(useShallow(state=>({
-     socket : state.socket,
+    const {currentRoom,players, roomUpdateListener} = useRoomStore(useShallow(state=>({
      currentRoom : state.currentRoom,
      players : state.players,
      changeCollection : state.changeCollection,

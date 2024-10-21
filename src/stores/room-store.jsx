@@ -70,6 +70,18 @@ const useRoomStore = create(persist((set, get) => ({
             socket.emit('changeMaster', { newMasterId })
         }
     },
+    ready : ()=>{
+        const { socket } = useRoomStore.getState();
+        if (socket) {
+            socket.emit('ready')
+        }
+    },
+    gameStart : ()=>{
+        const { socket } = useRoomStore.getState();
+        if(socket){
+            socket.emit('gameStart')
+        }
+    },
     roomUpdateListener: () => {
         const { socket } = useRoomStore.getState();
         if (socket) {
