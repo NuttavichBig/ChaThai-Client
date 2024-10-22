@@ -100,8 +100,9 @@ export default function CreateGameCollection() {
                 setActivePage(prv => ({ ...prv, err: '' }))
             }
         } catch (err) {
+            const errMsg = err?.response?.data?.message || err.message
             console.log(err.message)
-            setActivePage(prv => ({ ...prv, err: err.message }))
+            setActivePage(prv => ({ ...prv, err: errMsg }))
 
         }
     }

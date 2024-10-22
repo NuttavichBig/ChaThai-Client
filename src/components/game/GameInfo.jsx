@@ -6,11 +6,10 @@ import useUserStore from '../../stores/user-store'
 import ChangeCollectionModal from './ChangeCollectionModal'
 
 export default function GameInfo() {
-    const {currentRoom,players, roomUpdateListener} = useRoomStore(useShallow(state=>({
+    const {currentRoom,players} = useRoomStore(useShallow(state=>({
      currentRoom : state.currentRoom,
      players : state.players,
      changeCollection : state.changeCollection,
-     roomUpdateListener : state.roomUpdateListener
     })))
     const user = useUserStore(state=>state.user)
     const getCollectionDetail = useCollectionStore(state=>state.getCollectionDetail)
@@ -26,9 +25,7 @@ export default function GameInfo() {
         const yourData = players.filter(el=>el.userId === user.id)
         setPageData(prv=>({...prv,self : yourData[0]}))
     },[players])
-    useEffect(()=>{
-        roomUpdateListener();
-    },[])
+
 
     const collectionDataCall =async()=>{
         const result = await getCollectionDetail(currentRoom.collectionId)

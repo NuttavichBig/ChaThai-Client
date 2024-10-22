@@ -34,7 +34,7 @@ export default function CollectionDetail({setActivePage}) {
   return (
 
     <dialog id="collection_detail_modal" className="modal">
-      <div className="modal-box max-w-none w-1/2">
+      <div className="modal-box max-w-none w-1/2 bg-white">
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
           <button className="btn btn-sm btn-circle btn-ghost absolute right-4 top-4 hover:border-white hover:text-white hover:bg-black"

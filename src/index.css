@@ -54,3 +54,8 @@
 .arrow-bg-270deg {
     background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5046393557422969) 30%, rgba(255,255,255,0) 100%);
 }
+
+.btn-skip {
+    background-color: #FB4284;
+    color: white;
+}

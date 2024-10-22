@@ -12,6 +12,9 @@ const useRoomStore = create(persist((set, get) => ({
     currentRoom: null,
     players: null,
     socket: null,
+    word : '',
+    timer : 0,
+    score : 0,
     createGame: async (collectionId) => {
         console.log(collectionId)
         const { token } = useUserStore.getState();
@@ -39,10 +42,9 @@ const useRoomStore = create(persist((set, get) => ({
         const { socket } = useRoomStore.getState();
         console.log(socket)
         if (socket) {
+            socket.off('joinComplete')
             socket.emit('joinRoom', { code })
 
-            socket.off('joinComplete')
-            socket.off('error')
 
             socket.on('joinComplete', (data) => {
                 const { message, member, room } = data
@@ -77,8 +79,9 @@ const useRoomStore = create(persist((set, get) => ({
         }
     },
     gameStart : ()=>{
-        const { socket } = useRoomStore.getState();
+        const { socket} = useRoomStore.getState();
         if(socket){
+            set({score:0})
             socket.emit('gameStart')
         }
     },
@@ -108,6 +111,44 @@ const useRoomStore = create(persist((set, get) => ({
             socket.off('memberUpdated')
             socket.on('memberUpdated', (players) => {
                 set({players})
+            })
+        }
+    },
+    getWordListener : ()=>{
+        const {socket} = useRoomStore.getState();
+        if(socket){
+            socket.off('getWord')
+            socket.on('getWord',(wordObj)=>{
+                if(wordObj === 0 && typeof(wordObj) !== 'object'){
+                    socket.emit('endGame')
+                    set({timer : 0 ,word : ''})
+                }
+            set({word : wordObj.word})
+            })
+        }
+    },
+    timerListener : ()=>{
+        const {socket} = useRoomStore.getState();
+        if(socket){
+            socket.off('timerUpdate')
+            socket.off('timesUp')
+
+            socket.on('timerUpdate',(time)=>{
+                set({timer : time})
+            })
+            socket.on('timesUp',()=>{
+                socket.emit('endGame')
+                set({timer : 0 ,word : ''})
+            })
+        }
+    },
+    summaryListener : ()=>{
+        const {socket} = useRoomStore.getState();
+        if(socket){
+            socket.off('summary')
+
+            socket.on('summary',(score)=>{
+                set({score : score})
             })
         }
     }

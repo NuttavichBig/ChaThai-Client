@@ -102,7 +102,8 @@ export default function EditCollectionForm() {
                             <WordListInput key={index} index={index} input={input} setInput={setInput} />
                         ))}
                     </div>
-                    {input.wordList.length < maximumWord && <button type="button" className='btn-confirm rounded-full text-2xl text-center py-2 px-6 shadow-lg mt-2 w-full'
+                    {input.wordList.length < maximumWord && <button type="button" 
+                    className='btn-confirm rounded-full text-2xl text-center py-2 px-6 shadow-lg mt-2 w-full btn border-0'
                         onClick={hdlAddWord}>Add New Word +</button>}
                 </div>
             </div>
@@ -115,7 +116,7 @@ export default function EditCollectionForm() {
                         {loading ? <span className="loading loading-bars loading-md"></span> 
                         :
                         <>
-                        <button type='submit' className='btn-confirm py-2 px-8 rounded-full shadow-lg text-xl font-semibold btn'>Confirm</button>
+                        <button type='submit' className='btn-confirm py-2 px-8 rounded-full shadow-lg text-xl font-semibold btn border-0'>Confirm</button>
                         <Link to={'/collection'} type="button"
                         className='btn-cancel py-1.5 px-8 rounded-full text-xl font-semibold hover:text-black hover:border-black'>Cancel</Link>
                         </>}

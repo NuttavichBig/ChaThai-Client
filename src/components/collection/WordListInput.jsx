@@ -18,7 +18,7 @@ export default function WordListInput(props) {
 
   return (
       <div className={`w-full flex items-center bg-white rounded-full shadow-lg gap-2 ${index>9?'p-2':'py-2 px-4'}`}>
-        <input type='text' className=' w-full  text-2xl rounded-full text-center'
+        <input type='text' className=' w-full  text-2xl rounded-full text-center bg-white text-main'
           onChange={hdlChange} placeholder={index < 10 ? 'least 10 words' : 'Addition word'}
           value={input.wordList[index]} />
         {index > 9 && <button className='btn btn-sm btn-circle btn-outline border-gray-300 hover:opacity-100  btn-cancel'
