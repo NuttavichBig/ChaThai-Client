@@ -67,6 +67,7 @@ const useCollectionStore = create((set,get)=>({
             }
         })
         console.log(result)
+        return result.data
     },
     setNoImage : async()=>{
         set({currentCollection : {...get().currentCollection,coverImage : null}})

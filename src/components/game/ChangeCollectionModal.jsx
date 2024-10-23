@@ -117,7 +117,7 @@ export default function ChangeCollectionModal() {
                     <p className='text-sm text-red-500'>{socketErr}</p>
                     <button className='btn min-h-10 h-10 text-lg font-semibold w-1/6 btn-confirm text-white rounded-full border-0  shadow-lg'
                         onClick={hdlConfirm}>Change</button>
-                    <button className='btn-cancel rounded-full min-h-10 h-10  w-1/6 hover:border-black hover:text-black text-lg'
+                    <button className='btn-cancel rounded-full min-h-10 h-10   w-1/6 hover:border-black hover:text-black text-lg'
                         onClick={(e) => { e.target.closest('dialog').close(); }}>Cancel</button>
                 </div>
             </div>

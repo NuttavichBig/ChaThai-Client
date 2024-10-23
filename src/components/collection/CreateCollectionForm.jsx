@@ -23,7 +23,7 @@ export default function CreateCollectionForm() {
     })
 
     const navigate = useNavigate();
-    const maximumWord = 20
+    const maximumWord = 50
 
     const hdlChange = (e) => {
         setInput(prv => ({ ...prv, [e.target.name]: e.target.value }))
@@ -109,7 +109,7 @@ export default function CreateCollectionForm() {
                         {loading ? <span className="loading loading-bars loading-md"></span> 
                         :
                         <>
-                        <button type='submit' className='btn-confirm py-2 px-8 rounded-full shadow-lg text-xl font-semibold btn'>Confirm</button>
+                        <button type='submit' className='btn-confirm py-2 px-8 rounded-full shadow-lg text-xl font-semibold btn border-0'>Confirm</button>
                         <Link to={'/collection'} type="button"
                         className='btn-cancel py-1.5 px-8 rounded-full text-xl font-semibold hover:text-black hover:border-black'>Cancel</Link>
                         </>}

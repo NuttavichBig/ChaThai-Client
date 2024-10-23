@@ -24,7 +24,7 @@ export default function EditCollectionForm() {
         error :"",
     })
     const navigate = useNavigate();
-    const maximumWord = 20
+    const maximumWord = 50
 
     const hdlChange = (e) => {
         setInput(prv => ({ ...prv, [e.target.name]: e.target.value }))
