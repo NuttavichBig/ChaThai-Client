@@ -65,7 +65,7 @@ export default function Joingame() {
 
   // create game button handle
   const hdlCreateGame = () => {
-    if (token) navigate('/game/create')
+    if (token) navigate('/game')
     else setInput(prv => ({ ...prv, err: 'please login' }))
   }
   return (

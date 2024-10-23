@@ -28,8 +28,14 @@ export default function ProtectionRoute(props) {
             setIsAllow(false)
 
         } catch (err) {
-            const errMsg = err?.response?.data?.message || err.message
-            console.log(errMsg)
+            const errCode = err?.response?.status || err.status
+            if(errCode === 401){
+                setIsAllow(false)
+            }else{
+                const errMsg = err?.response?.data.message || err.message
+                console.log(errMsg)
+                setIsAllow(false)
+            }
         }
 
     }

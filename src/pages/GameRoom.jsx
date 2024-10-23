@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import GameInfo from '../components/game/GameInfo'
 import useRoomStore from '../stores/room-store'
-import { Navigate, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import PlayerList from '../components/game/PlayerList';
 import { useShallow } from 'zustand/shallow';
 import useUserStore from '../stores/user-store';
@@ -22,7 +22,7 @@ export default function GameRoom() {
   }, [socket])
   useEffect(() => {
     if (players) {
-      const self = players.filter(el => el.userId === user.id)[0]
+      const self = players?.filter(el => el.userId === user.id)[0]
       setSelf(self)
     }
   }, [players])
@@ -31,7 +31,7 @@ export default function GameRoom() {
   }, [])
 
   return (
-    <div className='mt-16 flex'>\
+    <div className='mt-16 flex'>
       {
         currentRoom?.status === 'PLAYING' ?
           <Playing self={self} />

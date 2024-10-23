@@ -5,7 +5,6 @@ import useRoomStore from '../../stores/room-store'
 export default function PlayerBox(props) {
   const changeMaster = useRoomStore(state=>state.changeMaster)
     const {player,self} = props
-    console.log(player)
 
 
     const hdlMasterChange = (e)=>{

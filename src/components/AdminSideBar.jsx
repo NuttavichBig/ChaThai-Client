@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function AdminSideBar() {
     return (
         <div className='flex flex-col -left-40 absolute top-1/2 '>
-            <Link to={'/admin/user'} className='pr-2 pl-20 py-2 bg-black flex justify-end items-center relative 
+            <Link to={'/admin'} className='pr-2 pl-20 py-2 bg-black flex justify-end items-center relative 
             hover:translate-x-20 transition-transform hover:bg-slate-600'>
                 <p className=' text-white text-center text-lg pr-2'>User</p><EditUserIcon className="w-10 h-10" />
             </Link>

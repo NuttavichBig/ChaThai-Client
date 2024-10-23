@@ -1,11 +1,10 @@
-import React, { act, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CollectionPageBox from '../components/collection/CollectionPageBox'
 import { useShallow } from 'zustand/shallow'
 import { Link } from 'react-router-dom'
 import useCollectionStore from '../stores/collection-store'
 import useUserStore from '../stores/user-store'
 import CategoryButton from '../components/collection/CategoryButton'
-import useRoomStore from '../stores/room-store'
 
 export default function MyCollectionPage() {
   // get data from store
@@ -16,10 +15,6 @@ export default function MyCollectionPage() {
     getCommunityCollection: state.getCommunityCollection,
     getOwnCollection: state.getOwnCollection,
   })))
-  const disconnect = useRoomStore(state=>state.disconnect)
-  useEffect(()=>{
-      disconnect();
-  },[])
 
 
   // Check selected category

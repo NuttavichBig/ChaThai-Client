@@ -79,6 +79,7 @@ const useRoomStore = create(persist((set, get) => ({
         }
     },
     gameStart : ()=>{
+        console.log('Game Start')
         const { socket} = useRoomStore.getState();
         if(socket){
             set({score:0})
@@ -119,8 +120,10 @@ const useRoomStore = create(persist((set, get) => ({
         if(socket){
             socket.off('getWord')
             socket.on('getWord',(wordObj)=>{
+                console.log(wordObj)
                 if(wordObj === 0 && typeof(wordObj) !== 'object'){
                     socket.emit('endGame')
+                    console.log('End Game Emitted with zero word')
                     set({timer : 0 ,word : ''})
                 }
             set({word : wordObj.word})
@@ -138,21 +141,25 @@ const useRoomStore = create(persist((set, get) => ({
             })
             socket.on('timesUp',()=>{
                 socket.emit('endGame')
+                console.log('End Game Emitted with Time up')
                 set({timer : 0 ,word : ''})
             })
         }
     },
-    summaryListener : ()=>{
-        const {socket} = useRoomStore.getState();
-        if(socket){
-            socket.off('summary')
+    // summaryListener : ()=>{
+    //     const {socket} = useRoomStore.getState();
+    //     if(socket){
+    //         socket.off('summary')
 
-            socket.on('summary',(score)=>{
-                set({score : score})
-            })
-        }
+    //         socket.on('summary',(score)=>{
+    //             console.log('summary listener trigger')
+    //             set({score : score})
+    //         })
+    //     }
+    // },
+    setScore : (score)=>{
+        set({score})
     }
-
 
 }), {
     name: "stateRoomData",

@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import useUserStore from '../stores/user-store'
 import UserBox from '../components/admin/UserBox'
-import AdminSideBar from '../components/AdminSideBar'
 import EditUserModal from '../components/admin/EditUserModal'
 const API = import.meta.env.VITE_API
 export default function ManageUser() {
@@ -71,7 +70,6 @@ export default function ManageUser() {
   }
   return (
     <>
-      <AdminSideBar />
       <div className='mt-16 h-[calc(100vh-64px)]'>
         <h2 className='text-black text-4xl font-bold pl-8 py-6'>User Management</h2>
         <p className='text-sm text-red-500 pl-16 pb-2'>{pageData.pageErr}</p>

@@ -2,7 +2,6 @@ import Joingame from '../components/game/Joingame'
 import Login from '../components/authen/Login'
 import UserInfo from '../components/authen/UserInfo'
 import useUserStore from '../stores/user-store'
-import useRoomStore from '../stores/room-store'
 import { useEffect, useState } from 'react'
 import AdminSideBar from '../components/AdminSideBar'
 import { useShallow } from 'zustand/shallow'
@@ -13,11 +12,7 @@ export default function HomePage() {
     getMe : state.getMe,
     token : state.token
   })))
-  const disconnect = useRoomStore(state=>state.disconnect)
   const [render,setRender] = useState(false)
-  useEffect(()=>{
-      disconnect();
-  },[])
   useEffect(()=>{
     checkRole();
   },[token])
@@ -31,10 +26,7 @@ export default function HomePage() {
       }
       setRender(false)
 
-  } catch (err) {
-      const errMsg = err?.response?.data?.message || err.message
-      console.log(errMsg)
-  }
+  } catch (err) {}
 
   }
   return (

@@ -20,7 +20,6 @@ export default function GameInfo() {
     useEffect(()=>{
         collectionDataCall()
     },[currentRoom])
-    console.log(pageData.self)
     useEffect(()=>{
         const yourData = players.filter(el=>el.userId === user.id)
         setPageData(prv=>({...prv,self : yourData[0]}))
@@ -41,7 +40,7 @@ export default function GameInfo() {
                 <p className='text-xl text-red-500 pt-4'>** Please don't refresh while in game room **</p>
                 <div className='divider divider-neutral  '></div>
                 <div className=' p-1 border-2 border-main rounded-lg flex justify-center items-center relative'>
-                <img src={pageData.collection?.coverImage || 'https://res.cloudinary.com/dvtkfd3jj/image/upload/v1728969891/NoCover.png'} alt="" className='w-40 h-40 rounded-lg shadow-xl' />
+                <img src={pageData.collection?.coverImage || 'https://res.cloudinary.com/dvtkfd3jj/image/upload/v1728969891/NoCover.png'} alt="" className='w-40 h-40 rounded-lg shadow-xl object-contain' />
                 {pageData.self?.isMaster && <div className='w-40 h-40 absolute op btn btn-sm bg-black opacity-0 hover:opacity-80' 
                 onClick={()=>{document.getElementById('change_collection').showModal()}}>Click to change</div>}
 
