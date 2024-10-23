@@ -42,9 +42,10 @@ export default function EditCollectionForm() {
         try {
             e.preventDefault();
             setLoading(true)
+            if(!input.title.trim())throw new Error("Title must be provided")
             input.wordList.forEach((item) => {
                 if (item.trim() == '') {
-                    const err = new Error('Please fill at least 10 word')
+                    const err = new Error("Please don't leave input empty and at least 10 words")
                     throw err
                 }
             })

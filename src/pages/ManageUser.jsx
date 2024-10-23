@@ -24,7 +24,7 @@ export default function ManageUser() {
         }
       })
       console.log(result)
-      setPageData(prv => ({ ...prv, userData: result.data }))
+      setPageData(prv => ({ ...prv, userData: result.data,pageErr : '' }))
     } catch (err) {
       const errMsg = err?.response?.data?.message || err.message
       console.log(errMsg)
@@ -42,7 +42,7 @@ export default function ManageUser() {
         })
         const newArr = [...pageData.userData]
         newArr.splice(newArr.findIndex(el => el.id === id), 1, result.data)
-        setPageData(prv => ({ ...prv, userData: newArr }))
+        setPageData(prv => ({ ...prv, userData: newArr,pageErr : '' }))
       }
     } catch (err) {
       const errMsg = err?.response?.data?.message || err.message
@@ -61,7 +61,7 @@ export default function ManageUser() {
           }
         })
         console.log(result)
-        setPageData(prv => ({ ...prv, userData: pageData.userData.filter(item => item.id !== id) }))
+        setPageData(prv => ({ ...prv, userData: pageData.userData.filter(item => item.id !== id) ,pageErr : ''}))
       }
     } catch (err) {
       const errMsg = err?.response?.data?.message || err.message

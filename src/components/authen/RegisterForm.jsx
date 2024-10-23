@@ -59,23 +59,23 @@ export default function RegisterForm() {
         <form action="" className='flex flex-col mx-auto w-4/5 text-center gap-4'
             onSubmit={hdlSubmit}>
             <div className='flex justify-center'>
-                <p className='text-2xl font-semibold font-itim'>Register</p>
+                <p className='text-2xl font-semibold font-itim text-main'>Register</p>
             </div>
             <div className='flex flex-col gap-2'>
                 <input type='text' placeholder='username'
-                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center'
+                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center bg-white text-black'
                     name='username'
                     onChange={hdlInputChange} />
                 <input type='password' placeholder='password'
-                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center'
+                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center bg-white text-black'
                     name='password'
                     onChange={hdlInputChange} />
                 <input type='password' placeholder='confirm password'
-                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center'
+                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center bg-white text-black'
                     name='confirmPassword'
                     onChange={hdlInputChange} />
                 <input type='text' placeholder='Email'
-                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center'
+                    className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center bg-white text-black'
                     name='email'
                     onChange={hdlInputChange} />
                 {loading.isLoading && <span className="loading loading-spinner text-accent self-center"></span>}

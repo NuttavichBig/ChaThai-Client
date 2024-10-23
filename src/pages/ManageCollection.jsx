@@ -23,7 +23,7 @@ export default function ManageCollection() {
     try{
       const result = await axios.get(`${API}/collection?limit=300`)
       console.log(result)
-      setPageData(prv=>({...prv,collectionData : result.data}))
+      setPageData(prv=>({...prv,collectionData : result.data,pageErr : ''}))
     }catch(err){``
       const errMsg = err?.response?.data?.message || err.message
       console.log(errMsg)
@@ -34,7 +34,7 @@ export default function ManageCollection() {
     try{
       if(confirm('Delete this collection?')){
         await deleteCollection(token,id)
-        setPageData(prv => ({ ...prv, collectionData: pageData.collectionData.filter(item => item.id !== id) }))
+        setPageData(prv => ({ ...prv, collectionData: pageData.collectionData.filter(item => item.id !== id),pageErr : '' }))
       }
     }catch(err){
       const errMsg = err?.response?.data?.message || err.message
@@ -50,7 +50,7 @@ export default function ManageCollection() {
         const newArr = [...pageData.collectionData]
         newArr.splice(newArr.findIndex(el => el.id === id), 1, result)
         console.log(newArr)
-        setPageData(prv => ({ ...prv, collectionData: newArr }))
+        setPageData(prv => ({ ...prv, collectionData: newArr,pageErr : '' }))
       }
     }catch(err){
       const errMsg = err?.response?.data?.message || err.message

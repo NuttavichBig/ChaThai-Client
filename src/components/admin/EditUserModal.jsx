@@ -42,7 +42,7 @@ export default function EditUserModal(props) {
         try{
             setInput(prv=>({...prv, loading : true}))
             const data = new FormData()
-            if(!input.email || !input.email.trim())throw new Error("Email should be provided")
+            if(!input.email.trim())throw new Error("Email should be provided")
             if(input.email !==selected.email){
                 data.append('email', input.email)
             }

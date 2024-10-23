@@ -67,7 +67,8 @@ export default function UserInfo() {
 
           <div className='flex gap-1 font-semibold font-itim items-center text-lg text-main'>
             {
-              input.update?<input type='text' value={input.displayName} onChange={hdlDisplayNameInput}/>:<p>{user.displayName || 'John Doe'}</p>
+              input.update?<input type='text' value={input.displayName} onChange={hdlDisplayNameInput} className='p-1 bg-white border border-black rounded-md'/>
+              :<p>{user.displayName || 'John Doe'}</p>
             }
             <EditIcon className='w-5 h-5 hover:scale-110' onClick={hdlDisplayNameUpdate} />
           </div>

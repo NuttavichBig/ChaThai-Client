@@ -40,7 +40,7 @@ export default function EditCollectionModal(props) {
         try {
             setInput(prv => ({ ...prv, loading: true }))
             const data = new FormData()
-            if (!input.title || !input.title.trim()) throw new Error("Title should be provided")
+            if (!input.title.trim()) throw new Error("Title should be provided")
             if (input.title !== selected.title) {
                 data.append('title', input.title)
             }

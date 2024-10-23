@@ -3,7 +3,6 @@ import React from 'react'
 export default function WordListInput(props) {
   const { index, input, setInput } = props
   const hdlChange = (e) => {
-    if (input.wordList[index] + ' ' === e.target.value) return
     let newArr = [...input.wordList]
     newArr[index] = e.target.value
     setInput(prv => ({ ...prv, wordList: newArr }))
