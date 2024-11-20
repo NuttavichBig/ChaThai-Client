@@ -38,9 +38,7 @@ const useRoomStore = create(persist((set, get) => ({
         }
     },
     joinRoom: (code) => {
-        console.log('join room function')
         const { socket } = useRoomStore.getState();
-        console.log(socket)
         if (socket) {
             socket.off('joinComplete')
             socket.emit('joinRoom', { code })
@@ -48,7 +46,6 @@ const useRoomStore = create(persist((set, get) => ({
 
             socket.on('joinComplete', (data) => {
                 const { message, member, room } = data
-                console.log(message)
                 set({ currentRoom: room, players: member, socketErr: '' })
             })
         }
