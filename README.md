@@ -10,9 +10,9 @@ ChaThai is inspired by a popular word-guessing game that encourages players to c
 - Register and Login to get your own profile
 
 ## Sample Screen Shot
-<img src="./sample image/main.png" alt="Main" style="width: 50%; height: auto;">
-<img src="./sample image/gameroom.png" alt="Main" style="width: 50%; height: auto;">
-<img src="./sample image/Word.png" alt="Main" style="width: 50%; height: auto;">
+<img src="./sample image/main.png" alt="Main" style="width: 75%; height: auto;">
+<img src="./sample image/gameroom.png" alt="Main" style="width: 75%; height: auto;">
+<img src="./sample image/Word.png" alt="Main" style="width: 75%; height: auto;">
 
 ## GitHub Repositories
 ### Front End (Client)
