@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import useRoomStore from '../../stores/room-store'
 import { useShallow } from 'zustand/shallow'
 import useUserStore from '../../stores/user-store'
+import HowToPlay from './HowToPlay'
 
 export default function Joingame() {
   const [input, setInput] = useState({
     code: '',
     err: '',
   })
+  const [isOpen,setIsOpen] = useState(false)
   const { connect, joinRoom, currentRoom, socket, disconnect } = useRoomStore(useShallow(state => ({
     currentRoom: state.currentRoom,
     connect: state.connect,
@@ -69,9 +71,12 @@ export default function Joingame() {
     else setInput(prv => ({ ...prv, err: 'please login' }))
   }
   return (
-    <div className='w-1/2 flex items-center bg-sub rounded-r-xl px-12 py-16 max-md:w-3/4 max-md:self-center max-md:rounded-none'>
-      <div className='flex flex-col justify-center w-full gap-2'>
+    <>
 
+    <div className='w-1/2 relative flex items-center bg-sub rounded-r-xl px-12 py-16 max-md:w-3/4 max-md:self-center max-md:rounded-none'>
+        <div className='absolute bg-main rounded-full h-8 w-8 text-center shadow-xl top-4 hover:cursor-pointer hover:scale-105 transition-all right-8 hover:border text-white text-2xl'
+        onClick={()=>setIsOpen(true)}>?</div>
+      <div className='flex flex-col justify-center w-full gap-2'>
         <p className='text-center font-itim text-2xl font-bold text-main'>Join Game</p>
         <input className='px-8 py-2 text-xl rounded-full shadow-inner border-2 border-gray-200 text-center bg-white text-black'
           type='text' placeholder='GAME CODE' maxLength={6}
@@ -84,5 +89,10 @@ export default function Joingame() {
       </div>
 
     </div>
+    {
+      isOpen&&
+      <HowToPlay setIsOpen={setIsOpen}/>
+    }
+    </>
   )
 }
