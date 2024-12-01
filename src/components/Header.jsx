@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   const user = useUserStore(state => state.user)
   return (
-    <div className='w-screen bg-black flex flex-between justify-between items-center fixed h-16 px-12 top-0 z-50'>
+    <div className='w-screen bg-black flex flex-between justify-between items-center fixed h-16 px-12 top-0 z-20'>
       {/* Left */}
       <Link to={'/'} className='flex items-center'>
       <img src="https://res.cloudinary.com/dvtkfd3jj/image/upload/v1729607391/1_1729607388373_285.png" alt="logo"className='w-20' />
